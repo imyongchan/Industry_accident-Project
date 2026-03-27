@@ -1,0 +1,162 @@
+{% extends "manager_base.html" %}
+{% load static %}
+
+
+{% block script1 %}
+<link rel="stylesheet" href="{% static 'CSS/manager/manager_stats.css' %}">
+{% endblock %}
+
+{% block contents %}
+
+
+    <div class="stats">
+        <h3>회원 산재 조회</h3>
+
+        
+        <form method="get" class="row g-2 mb-3">
+
+            <!-- 대분류 -->
+            <div class="col-md-2">
+                <label class="form-label">업종(대분류)</label>
+                <select name="industry1" id="i_industry_type1" class="form-select">
+                    <option value="">대분류 선택</option>
+                </select>
+            </div>
+
+            <!-- 중분류 -->
+            <div class="col-md-2">
+                <label class="form-label">업종(중분류)</label>
+                <select name="industry2" id="i_industry_type2" class="form-select">
+                    <option value="">중분류 선택</option>
+                </select>
+            </div>
+
+            <!-- 발생형태 -->
+            <div class="col-md-2">
+                <label class="form-label">발생형태</label>
+                <select name="injury" id="i_injury" class="form-select">
+                    <option value="">발생형태 선택</option>
+                </select>
+            </div>
+
+            <!-- 질병 -->
+            <div class="col-md-2">
+                <label class="form-label">질병</label>
+                <select name="disease" id="i_disease" class="form-select">
+                    <option value="">질병 선택</option>
+                </select>
+            </div>
+
+            <div class="col-md-1">
+                <label class="form-label">재해일자</label>
+                <input type="text" name="accident_date" class="form-control" placeholder="날짜입력">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">    </label>
+                <br>
+                <button class="btn btn-primary">검색</button>
+                <a href="{% url 'Manager:stats' %}" class="btn btn-secondary">초기화</a>
+            </div>
+
+        </form>
+ 
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr style="white-space: nowrap;">
+                    <th>No.</th>
+                    <th>회원명</th>
+                    <th>업종(대분류)</th>
+                    <th>업종(중분류)</th>
+                    <th>발생 형태</th>
+                    <th>질병</th>
+                    <th>재해 일자</th>
+                    <th>사고 지역</th>
+                </tr>
+            </thead>
+                    {% for stats in page_obj %}
+                <tbody>
+                    <tr style="white-space: nowrap;">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ stats.member_industry.member.m_name }}</td>
+                        <td>{{ stats.member_industry.i_industry_type1 }}</td>
+                        <td>{{ stats.member_industry.i_industry_type2 }}</td>
+                        <td>{{ stats.i_injury |default:"해당없음" }}</td>
+                        <td>{{ stats.i_disease_type | default:"해당없음" }}</td>
+                        <td>{{ stats.i_accident_date|date:"Y-m-d" }}</td>
+                        <td>{{ stats.i_address }}</td>
+                    </tr>
+                </tbody>
+                    {% endfor %}
+        </table>
+    
+<div class="pagination justify-content-center mt-3">
+
+    {# ===== 처음 ===== #}
+    {% if page_obj.number > 1 %}
+        <a class="btn btn-outline-primary mx-1"
+           href="?{{ query_string }}&page=1">
+           처음
+        </a>
+    {% else %}
+        <span class="btn btn-outline-secondary disabled mx-1">처음</span>
+    {% endif %}
+
+    {# ===== 이전 ===== #}
+    {% if prev_group_page %}
+        <a class="btn btn-outline-primary mx-1"
+        href="?{{ query_string }}&page={{ prev_group_page }}">
+        이전
+        </a>
+    {% else %}
+        <span class="btn btn-outline-secondary disabled mx-1">이전</span>
+    {% endif %}
+
+
+    {# ===== 페이지 번호 (10개 단위) ===== #}
+    {% for num in page_range %}
+        {% if page_obj.number == num %}
+            <span class="btn btn-primary mx-1">{{ num }}</span>
+        {% else %}
+            <a class="btn btn-outline-primary mx-1"
+               href="?{{ query_string }}&page={{ num }}">
+               {{ num }}
+            </a>
+        {% endif %}
+    {% endfor %}
+
+    {# ===== 다음 ===== #}
+    {% if next_group_page %}
+        <a class="btn btn-outline-primary mx-1"
+        href="?{{ query_string }}&page={{ next_group_page }}">
+        다음
+        </a>
+    {% else %}
+        <span class="btn btn-outline-secondary disabled mx-1">다음</span>
+    {% endif %}
+
+
+    {# ===== 맨끝 ===== #}
+    {% if page_obj.number < page_obj.paginator.num_pages %}
+        <a class="btn btn-outline-primary mx-1"
+           href="?{{ query_string }}&page={{ page_obj.paginator.num_pages }}">
+           맨끝
+        </a>
+    {% else %}
+        <span class="btn btn-outline-secondary disabled mx-1">맨끝</span>
+    {% endif %}
+
+</div>
+
+
+    <script>
+        const INIT_FILTERS = {
+            industry1: "{{ request.GET.industry1|default:'' }}",
+            industry2: "{{ request.GET.industry2|default:'' }}",
+            injury: "{{ request.GET.injury|default:'' }}",
+            disease: "{{ request.GET.disease|default:'' }}",
+            accident_date: "{{ request.GET.accident_date|default:'' }}"
+        };
+    </script>
+    <script src="{% static 'js/manager/manager_stats.js' %}"></script>
+{% endblock %}

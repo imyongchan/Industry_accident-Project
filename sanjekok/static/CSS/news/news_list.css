@@ -1,0 +1,255 @@
+/* ================================
+   1. 전체 기본 스타일
+================================ */
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  background-color: #f6f8f7;
+  color: #23333d;
+  margin-bottom: 80px;
+}
+
+/* ================================
+   2. 헤더 (산재 뉴스 타이틀)
+================================ */
+.news-header .subtitle {
+  font-size: 1rem;
+  color: #f99b18;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.news-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #23333d;
+  letter-spacing: -0.5px;
+}
+
+/* ===========================
+   3. 필터 박스 (추가)
+=========================== */
+.filter-wrapper {
+  background: #ffffff;
+  border: 1px solid #e3e6ea;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 24px 28px;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.filter-label {
+  width: 90px;
+  font-weight: 700;
+  color: #23333d;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  width: 320px;
+  border-radius: 8px;
+}
+
+.date-input {
+  width: 140px;
+  border-radius: 8px;
+}
+
+/* ================================
+   4. 뉴스 카드
+================================ */
+.news-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  transition: all 0.25s ease;
+  border-left: 4px solid #f99b18;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ================================
+   5. 이미지 썸네일
+================================ */
+.news-img {
+  width: 130px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #e9ecef;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-image {
+  width: 100%;
+  height: 100%;
+  background-color: #d3d8de;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+/* ================================
+   6. 뉴스 내용 영역
+================================ */
+.news-info {
+  flex: 1;
+}
+
+.news-title a {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #23333d;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.news-title a:hover {
+  color: #f99b18;
+}
+
+.news-content a {
+  font-size: 0.93rem;
+  color: #4a4a4a;
+  line-height: 1.4;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+/* ✅ hover 버그 수정(클래스명은 그대로) */
+.news-content a:hover {
+  color: #f99b18;
+}
+
+.news-meta {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* ================================
+   7. 페이지네이션
+================================ */
+.pagination {
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.pagination .page-link {
+  border: none;
+  background-color: transparent;
+  color: #23333d;
+  font-weight: 500;
+  padding: 6px 12px;
+  margin: 0 3px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.pagination .page-link:hover {
+  background-color: #f99b18;
+  color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #23333d;
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.page-arrow {
+  font-size: 1.3rem;
+  line-height: 1;
+  transform: scale(1.15);  
+  display: inline-block; 
+}
+
+/* ================================
+   8. 반응형 조정
+================================ */
+@media (max-width: 768px) {
+  .news-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .news-img {
+    margin-right: 0;
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .news-info {
+    width: 100%;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: auto;
+    margin-bottom: 6px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .date-input {
+    width: 140px;
+  }
+
+  /* 검색 영역: input 위, 버튼 아래 */
+  .search-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .btn-search {
+    display: block;
+    width: 100%;
+  }
+  .btn-outline-secondary{
+    display: block;
+    width: 100%;
+  }
+}

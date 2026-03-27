@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}산재찾기{% endblock %}
+
+{% block script1 %}
+<link rel="stylesheet" href="{% static 'CSS/search/search.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+{% endblock %}
+
+{% block contents %}
+
+<div class="wrapper">
+
+    <!-- 상단 바 -->
+    <div class="top-container">
+
+        <div class="location-box">
+            <div class="title">위치선택:</div>
+
+            <button class="search-btn" id="btnHome">
+                <i class="fa-solid fa-house"></i> 집
+            </button>
+
+            <button class="search-btn" id="btnWork">
+                <i class="fa-solid fa-briefcase"></i> 근무지
+            </button>
+
+            <div class="dropdown">
+                <button id="accidentDropdownBtn" class="search-btn dropdown-btn">
+                    <i class="fa-solid fa-location-dot"></i> 사고지역
+                </button>
+                <div id="accidentDropdownMenu" class="dropdown-menu" style="display:none;"></div>
+            </div>
+        </div>
+
+        <!-- 총 발생 건수 -->
+        <div class="count-box">
+            <div class="title">총 발생 건수</div>
+            <div class="count">
+                <span id="totalCount">0</span> 건
+            </div>
+        </div>
+    </div>
+
+    <!-- 중간 제목 -->
+    <div class="mid-title">
+        <div class="mid-title-left">
+            <div class="main-title">근무지/산업재해 상황</div>
+            <div class="subtitle">주변 산업재해 발생 현황을 확인해보세요</div>
+        </div>
+
+        <!-- ✅ 우측 마커 범례 -->
+        <div class="marker-legend">
+            <div class="legend-item">
+            <span class="legend-pin legend-red"></span>
+            <span>나의 산재 위치</span>
+            </div>
+            <div class="legend-item">
+            <span class="legend-pin legend-blue"></span>
+            <span>나의 집/근무지 위치</span>
+            </div>
+            <div class="legend-item">
+            <span class="legend-pin legend-yellow"></span>
+            <span>전체 산재 위치</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 지도 영역 -->
+    <div class="map-wrapper">
+        <div id="map"></div>
+
+        <!-- 상세 정보 -->
+        <div class="detail-box" id="detail">
+            위치를 선택하거나 마커를 클릭하면 상세 정보가 표시됩니다.
+        </div>
+    </div>
+
+</div>
+
+<script>
+    window.SEARCH_CONTEXT = {
+        home: "{{ home_address|escapejs }}",
+        work: "{{ work_address|escapejs }}",
+        accidentList: [
+            {% for ac in accidents %}
+            {
+                "alias": "{{ ac.i_title|escapejs }}",
+                "address": "{{ ac.i_address|escapejs }}"
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+    };
+</script>
+
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ KAKAO_JS_KEY }}&libraries=services"></script>
+
+{# ✅ 수정: 캐시 무력화 (views.py에서 JS_VERSION을 넘기고 있음) #}
+<script src="{% static 'js/search/search.js' %}?v={{ JS_VERSION }}"></script>
+
+{% endblock %}

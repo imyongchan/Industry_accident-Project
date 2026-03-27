@@ -1,0 +1,106 @@
+{% extends "member/mypage_base.html" %}
+{% load static %}
+{% block title %}산재 정보 추가{% endblock %}
+
+{% block script1 %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'CSS/member/mypage_individual_add.css' %}">
+<script src="{% static 'js/member/mypage_individual_add.js' %}"></script>
+{% endblock %}
+
+{% block mypage_contents %}
+
+<form action="" method="post" id="add-info-form">
+{% csrf_token %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+<h2>산재 정보 추가</h2>
+<div class="mb-3">
+    <label for="i_title" class="form-label">제목:</label>
+    <input type="text" class="form-control" placeholder="1~10자 / 특수기호불가" id="i_title" name="i_title" required maxlength="10" pattern="^[가-힣a-zA-Z0-9]+$">
+</div>
+
+<!--업종 대분류 -->
+<div class="mb-3">
+    <label for="i_industry_type1">업종(대분류)</label>
+    <select id="i_industry_type1" name="i_industry_type1" class="form-select" required>
+        <option value="">대분류 선택</option>
+    </select>
+</div>
+
+<!--업종 중분류 -->
+<div class="mb-3">
+    <label for="i_industry_type2">업종(중분류)</label>
+    <select id="i_industry_type2" name="i_industry_type2" class="form-select" required>
+        <option value="">중분류 선택</option>
+    </select>
+</div>
+
+<!-- 발생형태/질병 모달 버튼 -->
+<div class="mb-3">
+    <label class="form-label">*발생형태/질병 :</label>
+    <div id="mode-error" class="text-danger" style="display: none; font-size: 0.875em;">발생형태, 질병, 모두 중 하나를 선택하고 값을 입력해주세요.</div>
+    <div class="radio-group">
+        <input type="radio" name="mode" value="occ" id="mode_occ" required>
+        <label for="mode_occ">발생형태</label>
+
+        <input type="radio" name="mode" value="dis" id="mode_dis">
+        <label for="mode_dis">질병</label>
+
+        <input type="radio" name="mode" value="all" id="mode_all" checked>
+        <label for="mode_all">모두</label>
+    </div>
+    <div class="input-group mt-2">
+        <input id="occInput" name="i_injury" type="text" class="form-control" placeholder="발생형태" disabled>
+        <input id="disInput" name="i_disease_type" type="text" class="form-control" placeholder="질병" disabled>
+    </div>
+</div>
+
+<!-- 재해일자 -->
+<div class="mb-3">
+    <label for="i_accident_date" class="form-label">*재해일자 :</label>
+    <input 
+        type="text" 
+        id="i_accident_date" 
+        name="i_accident_date"
+        class="form-control"
+        placeholder="YYYY-MM-DD" required>
+    <div id="accidentDateError" class="text-danger" style="display: none; font-size: 0.875em;">재해일자를 입력해주세요.</div>
+</div>
+<!-- 발생주소 -->
+<div class="mb-3">
+    <label for="i_address" class="form-label">*발생 주소 :</label>
+    <input 
+        type="text" 
+        class="form-control" 
+        id="i_address" 
+        name="i_address" 
+        placeholder="발생 주소를 입력해주세요."
+        readonly
+        onclick="searchAddress('i_address')" required>
+    <div id="addressError" class="text-danger" style="display: none; font-size: 0.875em;">발생 주소를 입력해주세요.</div>
+</div>
+
+
+
+<button type="submit" class="btn btn-primary">등록하기</button>
+</form>
+
+
+<!-- 모달 -->
+<div id="modal" class="custom-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 id="modalTitle"></h5>
+            <button class="close-btn">&times;</button>
+        </div>
+
+        <div id="modalGrid" class="modal-grid"></div>
+    </div>
+</div>
+
+
+{% endblock mypage_contents %}

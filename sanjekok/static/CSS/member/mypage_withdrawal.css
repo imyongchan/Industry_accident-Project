@@ -1,0 +1,114 @@
+/* ==============================
+   기본 설정
+============================== */
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  background-color: #f6f8f7;
+  color: #23333d;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ 중앙정렬용 래퍼 */
+.mypage-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 50px 20px;
+}
+
+/* ==============================
+   카드 구조
+============================== */
+.mypage-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  max-width: 600px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 헤더 */
+.mypage-header {
+  background-color: #23333d;
+  color: #fff;
+  text-align: center;
+  padding: 28px 20px 22px;
+}
+
+.mypage-header h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.mypage-header p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* 본문 */
+.mypage-body {
+  padding: 40px 45px 50px;
+}
+
+/* ==============================
+   본문 텍스트
+============================== */
+.withdraw-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e63946;
+  margin-bottom: 20px;
+}
+
+.warning-text {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+/* ==============================
+   버튼
+============================== */
+.btn-withdraw {
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 28px;
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-withdraw:hover {
+  background-color: #c82333;
+}
+
+/* ==============================
+   반응형
+============================== */
+@media (max-width: 768px) {
+  .mypage-body {
+    padding: 30px 25px 40px;
+  }
+
+  .mypage-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .withdraw-title {
+    font-size: 1.3rem;
+  }
+
+  .btn-withdraw {
+    width: 100%;
+    padding: 12px 0;
+  }
+}

@@ -1,0 +1,16 @@
+.sj_env
+.myvenv
+.m_venv
+.venv
+.env
+.activate.bat
+sj_env
+activate.bat
+m_venv
+myvenv
+venv
+env
+__pycache__
+.__pycache__
+sanjekok/sanjekok/settings.py
+data.json

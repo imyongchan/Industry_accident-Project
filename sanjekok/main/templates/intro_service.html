@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}산재콕 | 서비스소개{% endblock %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'CSS/main/intro_service.css' %}">
+    <!-- 왼쪽 고정 네비게이션 -->
+<div class="subbody">
+    <div class="subheader">
+        <p style="background-color: #e9e8e8; width: 180px;"><a href="{% url 'Main:service' %}">서비스 소개</a></p>
+        <p><a href="{% url 'Main:tech' %}">핵심기능</a></p>
+    </div>
+
+    <!-- 본문 -->
+    <div class="content">
+        <h3>서비스 소개</h3>
+
+        <h4>왜 필요한가요?</h4>
+
+        <div class="why">
+            <p>
+                산재를 당했을때 산재병원에 가지않는다면? <br> <span class="info">치료비를 지급받지못하는 등 금전적 불이익</span> <br><br>
+                전국에 병원은 6만개 정도있는데 산재병원은 10% 약 6천개정도 밖에없다. <br> <span class="info">정보 찾기가 쉽지않음.</span> <br><br>
+                데이터 기반 산재 예방 필요. <br> <span class="info">맞춤형 산재 정보 제공</span>
+            </p>
+        </div>
+
+        <div class="sug">
+            <h3>이런 분들이 쓰기 좋습니다!</h3>
+
+            <div class="who">
+                <div>
+                    <img src="{% static 'img/worker.png' %}" alt="">
+                    <p>현장근로자</p>
+                    <p>사고를 미리 피하고 싶다 <br>
+작업 전에 마음이 불안하지 않게 하고 싶다 <br>
+과거 사고나 위험요소가 반복되지 않기를 바란다</p>
+                </div>
+                <div>
+                    <img src="{% static 'img/manager.png' %}" alt="">
+                    <p>안전관리자</p>
+                    <p>여러 현장의 안전 상태를 한눈에 관리하고 싶다 <br>
+                    법적 책임과 의무를 제대로 수행해야 한다 <br>
+                    근로자에게 일관된 안전 교육을 제공하고 싶다
+                    </p>
+                </div>
+                <div>
+                    <img src="{% static 'img/ceo.png' %}" alt="">
+                    <p>사업주</p>
+                    <p>사고로 인한 비용·손실을 최소화하고 싶다 <br>
+                        법적 리스크를 줄이고 싶다
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gach">
+            <h3>서비스 핵심가치</h3>
+
+            <h4>1. 신뢰성</h4>
+            <p>공식 자료와 검증된 정보를 기반으로 정확하고 믿을 수 있는 산재 관련 지식을 제공합니다.</p>
+
+            <h4>2. 접근성</h4>
+            <p>근로자부터 사업주까지 누구나 쉽게 이해하고 활용할 수 있도록 명확하고 직관적인 정보 접근 환경을 제공합니다.</p>
+
+            <h4>3. 안전증진</h4>
+            <p>산업 현장의 위험을 줄이고 예방 문화를 확산시키기 위해 실질적이고 유용한 지침과 정보를 제공합니다.</p>
+
+            <h4>4. 지속성</h4>
+            <p>산재 예방 지식을 지속적으로 업데이트하여 변화하는 산업 환경과 법규를 반영하고 장기적 안전 관리에 기여합니다.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

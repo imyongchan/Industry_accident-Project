@@ -1,0 +1,421 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}맞춤 산재 통계{% endblock %}
+
+{% block script1 %}
+<link rel="stylesheet" href="{% static 'CSS/stats/stats.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+{% endblock %}
+
+{% block contents %}
+    <div class="stats-container">
+        <!-- 1. 프로필 영역 -->
+        <section class="profile-box">
+            <div class="profile-left">
+                <div class="profile-icon">
+                    <img src="{% static 'img/worker.png' %}" alt="근로자 아이콘">
+                </div>
+                <span class="profile-info">
+                    <h2>{{ member.m_name }}님의 프로필</h2>
+                    <p><strong> 업종명</strong>:  {{ industry.i_industry_type2 }}  
+                    <p><strong> 성별 </strong>:  {{ member.m_sex }}</p>    
+                    <p><strong> 나이 </strong>:  만 {{ age }}세</p>
+                    <!-- 나의 산재 눌렀을 때 나오는 추가 상세 정보 -->
+                    <div id="injuryDetail">
+                        {% if show_detail and selected_individual %}
+                            {% if selected_individual.i_title %}
+                                <p><strong>산재명</strong>  :  {{ selected_individual.i_title }}</p>
+                            {% endif %}
+                            {% if selected_individual.i_injury %}
+                                <p><strong>발생형태</strong>  :  {{ selected_individual.i_injury }}</p>
+                            {% endif %}
+                            {% if selected_individual.i_disease_type %}
+                                <p><strong>질병</strong>  :  {{ selected_individual.i_disease_type }}</p>
+                            {% endif %}
+                            {% if selected_individual.i_accident_date %}
+                                <p><strong>발생일자</strong>  :  {{ selected_individual.i_accident_date }}</p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </span>
+            </div>
+            <div class="profile-edit-btn">
+                <button id="myInjuryBtn">나의 산재 선택하기▼</button>
+                <!-- 드롭다운 -->
+                <ul id="injuryDropdown" class="dropdown hidden">
+                    {% for ind in individual_list %}
+                    <li data-accident-id="{{ ind.accident_id }}"
+                        data-title="{{ ind.i_title }}"
+                        data-injury="{{ ind.i_injury }}"
+                        data-disease="{{ ind.i_disease_type }}"
+                        data-date="{{ ind.i_accident_date }}">
+                        {{ ind.i_title }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. 분석 기간 선택 -->
+        <section class="period-section">
+            
+            <div class="period-buttons">
+                <h3>분석 기간:</h3>
+                <button class="period-btn" data-year="1"
+                    data-acc-count="{{ summary1.0.재해자수 }}"
+                    data-acc-rate="{{ summary1.0.재해율 }}"
+                    data-fatal-count="{{ summary1.0.사망자수 }}"
+                    data-fatal-rate="{{ summary1.0.사망만인율 }}"
+                    data-male="{{ summary2.0.남자 }}"
+                    data-female="{{ summary2.0.여자 }}"
+                    data-male-rate="{{ summary2.0.남자비율 }}"
+                    data-female-rate="{{ summary2.0.여자비율 }}"
+                    data-male2="{{ summary3.0.남자 }}"
+                    data-female2="{{ summary3.0.여자 }}"
+                    data-male-rate2="{{ summary3.0.남자비율 }}"
+                    data-female-rate2="{{ summary3.0.여자비율 }}"
+                    data-ageu18="{{ summary4.0.18세미만 }}"
+                    data-age20s="{{ summary4.0.20대 }}"
+                    data-age30s="{{ summary4.0.30대 }}"
+                    data-age40s="{{ summary4.0.40대 }}"
+                    data-age50s="{{ summary4.0.50대 }}"
+                    data-age60p="{{ summary4.0.60대이상 }}"
+                    data-ageu18a="{{ summary5.0.18세미만 }}"
+                    data-age20sa="{{ summary5.0.20대 }}"
+                    data-age30sa="{{ summary5.0.30대 }}"
+                    data-age40sa="{{ summary5.0.40대 }}"
+                    data-age50sa="{{ summary5.0.50대 }}"
+                    data-age60pa="{{ summary5.0.60대이상 }}">
+                    최근 1년
+                </button>
+
+                <!-- 최근 2년 -->
+                <button class="period-btn" data-year="2"
+                    data-acc-count="{{ summary1.1.재해자수 }}"
+                    data-acc-rate="{{ summary1.1.재해율 }}"
+                    data-fatal-count="{{ summary1.1.사망자수 }}"
+                    data-fatal-rate="{{ summary1.1.사망만인율 }}"
+                    data-male="{{ summary2.1.남자 }}"
+                    data-female="{{ summary2.1.여자 }}"
+                    data-male-rate="{{ summary2.1.남자비율 }}"
+                    data-female-rate="{{ summary2.1.여자비율 }}"
+                    data-male2="{{ summary3.1.남자 }}"
+                    data-female2="{{ summary3.1.여자 }}"
+                    data-male-rate2="{{ summary3.1.남자비율 }}"
+                    data-female-rate2="{{ summary3.1.여자비율 }}"
+                    data-ageu18="{{ summary4.1.18세미만 }}"
+                    data-age20s="{{ summary4.1.20대 }}"
+                    data-age30s="{{ summary4.1.30대 }}"
+                    data-age40s="{{ summary4.1.40대 }}"
+                    data-age50s="{{ summary4.1.50대 }}"
+                    data-age60p="{{ summary4.1.60대이상 }}"
+                    data-ageu18a="{{ summary5.1.18세미만 }}"
+                    data-age20sa="{{ summary5.1.20대 }}"
+                    data-age30sa="{{ summary5.1.30대 }}"
+                    data-age40sa="{{ summary5.1.40대 }}"
+                    data-age50sa="{{ summary5.1.50대 }}"
+                    data-age60pa="{{ summary5.1.60대이상 }}">
+                    2년
+                </button>
+
+                <!-- 최근 3년 -->
+                <button class="period-btn" data-year="3"
+                    data-acc-count="{{ summary1.2.재해자수 }}"
+                    data-acc-rate="{{ summary1.2.재해율 }}"
+                    data-fatal-count="{{ summary1.2.사망자수 }}"
+                    data-fatal-rate="{{ summary1.2.사망만인율 }}"
+                    data-male="{{ summary2.2.남자 }}"
+                    data-female="{{ summary2.2.여자 }}"
+                    data-male-rate="{{ summary2.2.남자비율 }}"
+                    data-female-rate="{{ summary2.2.여자비율 }}"
+                    data-male2="{{ summary3.2.남자 }}"
+                    data-female2="{{ summary3.2.여자 }}"
+                    data-male-rate2="{{ summary3.2.남자비율 }}"
+                    data-female-rate2="{{ summary3.2.여자비율 }}"
+                    data-ageu18="{{ summary4.2.18세미만 }}"
+                    data-age20s="{{ summary4.2.20대 }}"
+                    data-age30s="{{ summary4.2.30대 }}"
+                    data-age40s="{{ summary4.2.40대 }}"
+                    data-age50s="{{ summary4.2.50대 }}"
+                    data-age60p="{{ summary4.2.60대이상 }}"
+                    data-ageu18a="{{ summary5.2.18세미만 }}"
+                    data-age20sa="{{ summary5.2.20대 }}"
+                    data-age30sa="{{ summary5.2.30대 }}"
+                    data-age40sa="{{ summary5.2.40대 }}"
+                    data-age50sa="{{ summary5.2.50대 }}"
+                    data-age60pa="{{ summary5.2.60대이상 }}">
+                    3년
+                </button>
+            </div>
+        </section>
+
+
+
+        <!-- 3. 통계 시각화 영역 -->
+        <section id="stats-visual-area" class="stats-visual hidden"
+            data-summary6='{{ summary6_json }}'
+            data-summary7='{{ summary7_json }}'
+            data-summary8='{{ summary8_json }}'
+            data-summary9='{{ summary9_json }}'
+            data-age-band="{{ age_group }}"
+            data-has-selection="{% if show_detail and selected_individual %}1{% else %}0{% endif %}"
+            data-selected-injury="{% if show_detail and selected_individual and selected_individual.i_injury %}{{ selected_individual.i_injury }}{% endif %}"
+            data-selected-disease="{% if show_detail and selected_individual and selected_individual.i_disease_type %}{{ selected_individual.i_disease_type }}{% endif %}"
+            data-has-injury="{% if individual_list %}1{% else %}0{% endif %}"
+            data-risk-analysis='{{ risk_analysis_json|safe }}'>
+            
+
+            <section id="kpi-section" class="kpi-section">
+                <div class="kpi-grid">
+                    <div id="kpi-card-accident" class="kpi-card">
+                    <h4>재해율</h4>
+                    <p id="kpi-accident-rate"></p>
+                    </div>
+
+                    <div id="kpi-card-fatal" class="kpi-card">
+                    <h4>사망만인율</h4>
+                    <p id="kpi-fatal-rate"></p>
+                    </div>
+
+                    <div id="kpi-card-injury" class="kpi-card">
+                    <h4>발생형태 1위</h4>
+                    <p id="kpi-injury-top"></p>
+                    </div>
+
+                    <div id="kpi-card-disease" class="kpi-card">
+                    <h4>질병발생률 1위</h4>
+                    <p id="kpi-disease-top"></p>
+                    </div>
+
+                    <div id="kpi-card-risk" class="kpi-card">
+                    <h4>종합 위험도</h4>
+                    <p id="kpi-risk-score"></p>
+                    <span class="kpi-sub">중간 수준</span>
+                    </div>
+                </div>
+            </section>
+
+            
+            <div class="visual-grid">
+                <!-- 내 업종 재해율 -->
+                <div class="visual-card small">
+                    <h3>재해율</h3>
+                    <p id="accidentSummary"></p>
+                    <p>재해율 - 근로자 1,000명당 발생하는 재해자수의 비율</p>
+                </div>
+
+                <!-- 내 업종 사망만인율 -->
+                <div class="visual-card small">
+                    <h3>사망만인율</h3>
+                    <p id="fatalSummary"></p>
+                    <p>사망만인율 - 근로자 10,000명당 발생하는 사망자수의 비율</p>
+                </div>
+
+                <!-- 남/녀 재해 현황 -->
+                <div class="visual-card">
+                    <h3>남/녀 현황</h3>
+                    <p id="genderSummary1"></p>
+                    <canvas id="genderChart1"></canvas>
+                </div>
+
+                <!-- 남/녀 재해 사망현황 -->
+                <div class="visual-card">
+                    <h3>남/녀 사망현황</h3>
+                    <p id="genderSummary2"></p>
+                    <canvas id="genderChart2"></canvas>
+                </div>
+
+                <!-- 연령대별 재해 현황 -->
+                <div class="visual-card" id="card-age">
+                    <h3>연령대별 현황</h3>
+                    <div id="ageSummary1" class="result-box" style="margin-top:10px;"></div>
+                    <canvas id="ageChart1"></canvas>
+                </div>
+
+                <!-- 연령대별 사망 현황 -->
+                <div class="visual-card" id="card-age-fatal">
+                    <h3>연령대별 사망현황</h3>
+                    <div id="ageSummary2" class="result-box" style="margin-top:10px;"></div>
+                    <canvas id="ageChart2"></canvas>
+                </div>
+
+                <!-- 발생형태별 재해 TOP 10 (초기 숨김) -->
+                <div class="visual-card" id="card-injury" style="display:none;">
+                    <h3>재해유형 </h3>
+                    <p id="injurySummary1"></p>
+                    <canvas id="injuryChart1"></canvas>
+                </div>
+
+                <!-- 사망재해현황 (발생형태 TOP 10) (초기 숨김) -->
+                <div class="visual-card" id="card-injury-fatal" style="display:none;">
+                    <h3>사망재해현황 </h3>
+                    <p id="injurySummary2"></p>
+                    <canvas id="injuryChart2"></canvas>
+                </div>
+
+                <!-- 재해 질병유형 (TOP 10) (초기 숨김) -->
+                <div class="visual-card" id="card-disease" style="display:none;">
+                    <h3>재해 질병유형 </h3>
+                    <p id="diseaseSummary1"></p>
+                    <canvas id="diseaseChart1"></canvas>
+                </div>
+
+                <!-- 재해 질병 사망 현황 (초기 숨김) -->
+                <div class="visual-card" id="card-disease-fatal" style="display:none;">
+                    <h3>재해 질병 사망 현황</h3>
+                    <p id="diseaseSummary2"></p>
+                    <canvas id="diseaseChart2"></canvas>
+                </div>
+
+                <!-- 종합 위험도 평가 카드 -->
+                <div class="visual-card highlight" id="card-risk">
+                    <div class="risk-header">
+                        <h3 style="margin: 0;">종합 위험도 평가</h3>
+                    </div>
+
+                    <p class="risk-condition" id="riskConditionText"></p>
+
+                    <div class="risk-section">
+                        <!-- ✅ 점수 영역 (추가) -->
+                        <div class="risk-score-wrap" id="riskScoreWrap" style="display:none;">
+                        <div class="risk-score-main">
+                            <div class="risk-score-circle" id="riskScoreCircle">
+                            <span class="risk-score-number" id="riskScoreNumber">점</span>
+                            </div>
+
+                            <div class="risk-score-text">
+                            <p class="risk-score-unit">산재 위험도</p>
+                            <p class="risk-level" id="riskLevelText">-</p>
+                           
+                            </div>
+                        </div>
+
+                        <!-- ✅ breakdown(기본/개인화/중증도) (추가) -->
+                        <div class="risk-breakdown" id="riskBreakdown" style="margin-top:12px;">
+                            <div class="breakdown-item">
+                            <span class="breakdown-label">기본 위험도</span>
+                            <span class="breakdown-value" id="breakdownBase">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                            <span class="breakdown-label">개인화 위험도</span>
+                            <span class="breakdown-value" id="breakdownPersonal">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                            <span class="breakdown-label">중증도</span>
+                            <span class="breakdown-value" id="breakdownSeverity">0</span>
+                            </div>
+                        </div>
+
+                        <!-- ✅ details 토글 (요청하신 “버튼 눌러야 열림”) -->
+                        <div class="risk-details-toggle" style="margin-top:12px;">
+                            <button type="button" id="toggleRiskDetailsBtn" class="details-toggle-btn">
+                                상세 보기 ▼
+                            </button>
+
+                            <!-- ✅ 토글 대상 -->
+                            <div id="riskDetailsPanel" style="display:none; margin-top:16px;">
+
+                                <!-- 📌 종합 위험도 계산 방식 설명 -->
+                                <div class="detail-block">
+                                    <h5 class="detail-title">📊 종합 위험도는 이렇게 계산됩니다</h5>
+                                    <ul class="detail-list">
+                                        <li>
+                                            <strong>기본 위험도 (최대 40점)</strong><br>
+                                            재해율(14점) + 사망만인율(26점)
+                                        </li>
+                                        <li>
+                                            <strong>개인화 위험도 (최대 40점)</strong><br>
+                                            성별,나이에 따른 발생형태·질병 유형 비중 반영
+                                        </li>
+                                        <li>
+                                            <strong>중증도 (최대 20점)</strong><br>
+                                            재해 대비 사망 비율
+                                        </li>
+                                    </ul>
+                                    <p class="detail-note">
+                                        ※ 최종 점수는 <strong>0~100점</strong>으로 산출됩니다.
+                                    </p>
+                                </div>
+
+                                <!-- 📌 내 점수 해석 -->
+                                <div class="detail-block" style="margin-top:16px;">
+                                    <h5 class="detail-title">🧠 현재 점수에 대한 해석</h5>
+                                    <ul id="riskExplanationList" class="detail-list">
+                                        <!-- JS에서 explanation 문장 삽입 -->
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+
+                        <!-- ✅ 데이터 있을 때만 보여줄 영역 -->
+                        <div class="risk-grid" id="riskGrid" style="display:none;">
+                        <!-- 발생형태 TOP 5 -->
+                        <div class="risk-category">
+                            <div class="risk-category-title">
+                            <span class="risk-icon">⚠️</span>
+                            발생형태 TOP 5
+                            </div>
+                            <div class="risk-category-inner">
+                            <div class="risk-list" id="injuryRiskList"></div>
+                            <div class="risk-chart-wrap">
+                                <canvas id="riskAccidentPie"></canvas>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- 질병형태 TOP 5 -->
+                        <div class="risk-category">
+                            <div class="risk-category-title">
+                            <span class="risk-icon">🏥</span>
+                            질병형태 TOP 5
+                            </div>
+                            <div class="risk-category-inner">
+                            <div class="risk-list" id="diseaseRiskList"></div>
+                            <div class="risk-chart-wrap">
+                                <canvas id="riskDiseasePie"></canvas>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <!-- ✅ 데이터 없을 때 표시 -->
+            <div class="risk-no-data" id="riskNoData" style="display:block; padding:40px;">
+                충분한 통계 데이터가 없습니다
+            </div>
+            
+        <div class="visual-card cta-card" id="card-cta">
+            <div class="cta-button-group">
+                <a href="{% url 'Search:search_page' %}" class="cta-btn primary">
+                    📍 나의 산재 위치 보러가기
+                </a>
+
+                <a href="{% url 'Hospital:hospital_search' %}" class="cta-btn secondary">
+                    🏥 산재 지정 병원 찾기
+                </a>
+
+                <a href="{% url 'Safe:safe_list' %}" class="cta-btn outline">
+                    📚 안전자료실 보기
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<script src="{% static 'js/stats/chart.js' %}"></script>
+<script src="{% static 'js/stats/stats.js' %}"></script>
+
+
+{% endblock %}
+</body>
+</html>

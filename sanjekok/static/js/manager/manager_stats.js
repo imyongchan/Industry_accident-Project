@@ -1,0 +1,101 @@
+$(document).ready(function () {
+
+    /* -------------------------------
+       업종 대분류/중분류
+     --------------------------------*/
+    const industryMap = {
+        "광업": ["석탄광업 및 채석업", "석회석·금속·비금속광업 및 기타광업"],
+        "제조업": [
+            "식료품제조업", "섬유 및 섬유제품 제조업", "목재 및 종이제품 제조업",
+            "출판·인쇄·제본업", "화학 및 고무제품 제조업", "의약품·화장품·연탄·석유제품제조업",
+            "기계기구·금속·비금속광물제품제조업", "금속제련업",
+            "전기기계기구·정밀기구·전자제품제조업", "자동차 및 수리업",
+            "수제품 및 기타제품 제조업"
+        ],
+        "전기·가스·증기 및 수도사업": ["전기·가스·증기 및 수도사업"],
+        "건설업": ["건설업"],
+        "운수·창고 및 통신업": ["철도·항공·창고·운수관련서비스업", "육상 및 수상운수업", "통신업"],
+        "임업": ["임업"],
+        "어업": ["어업"],
+        "농업": ["농업"],
+        "금융 및 보험업": ["금융 및 보험업"],
+        "기타의 사업": [
+            "시설관리및사업지원서비스업","해외파견자","전문·보건·교육·여가관련서비스업",
+            "도소매·음식·숙박업","부동산업 및 임대업","국가 및 지방자치단체의 사업",
+            "주한미군","기타의 각종사업"
+        ]
+    };
+
+    const occList = [
+        "떨어짐","넘어짐","부딪힘","물체에 맞음","무너짐","끼임","절단·베임·찔림","감전",
+        "폭발·파열","화재","깔림·뒤집힘","이상온도 물체접촉","빠짐·익사","광산사고",
+        "불균형 및 무리한 동작","화학물질 누출·접촉","산소결핍","사업장내 교통사고",
+        "사업장외 교통사고","업무상질병","체육행사등의 사고","폭력행위","동물상해",
+        "기타","분류불능"
+    ];
+
+    const disList = [
+        "직업병","진폐증","소음성난청","이상기압","진동장해","물리적인자 기타","이황화탄소",
+        "트리클로로에틸렌(TCE)","기타유기화합물","벤젠","타르","염화비닐","디이소시아네이트",
+        "석면","기타화학물질","연","수은","크롬","카드뮴","망간","감염성질환","독성간염",
+        "직업성피부질환","직업성암","직업병 기타","작업관련성 질병","뇌혈관질환","심장질환",
+        "뇌·심혈관질환","신체부담작업","비사고성요통","사고성요통","수근관증후군","간질환",
+        "정신질환","작업관련성 기타"
+    ];
+
+    /* -------------------------------
+       옵션 채우기
+     --------------------------------*/
+    const $cat1 = $("#i_industry_type1");
+    Object.keys(industryMap).forEach(k => {
+        $cat1.append(`<option value="${k}">${k}</option>`);
+    });
+
+    $("#i_industry_type1").on("change", function () {
+        const selected = $(this).val();
+        const $cat2 = $("#i_industry_type2");
+
+        $cat2.empty().append(`<option value="">중분류 선택</option>`);
+        if (!selected) return;
+
+        industryMap[selected].forEach(item => {
+            $cat2.append(`<option value="${item}">${item}</option>`);
+        });
+    });
+
+    occList.forEach(item => {
+        $("#i_injury").append(`<option value="${item}">${item}</option>`);
+    });
+
+    disList.forEach(item => {
+        $("#i_disease").append(`<option value="${item}">${item}</option>`);
+    });
+
+    /* -------------------------------
+       🔄 필터 값 복원
+     --------------------------------*/
+    const params = new URLSearchParams(window.location.search);
+
+    const industry1 = params.get("industry1");
+    if (industry1) {
+        $("#i_industry_type1").val(industry1).trigger("change");
+    }
+
+    const industry2 = params.get("industry2");
+    if (industry2) {
+        setTimeout(() => {
+            $("#i_industry_type2").val(industry2);
+        }, 0);
+    }
+
+    const injury = params.get("injury");
+    if (injury) $("#i_injury").val(injury);
+
+    const disease = params.get("disease");
+    if (disease) $("#i_disease").val(disease);
+
+    const accidentDate = params.get("accident_date");
+    if (accidentDate) {
+        $("input[name='accident_date']").val(accidentDate);
+    }
+});
