@@ -198,6 +198,11 @@
 
 ---
 
+## 💥Troubleshooting
+
+
+
+
 ## 🎥 데모 영상
 
 - 프로젝트 발표 영상 : [발표 영상](https://www.youtube.com/watch?v=e4Z1Nv8bzfg&list=PLedGoSru7948o9_CdQBQZmIc-K3tR8eO9&index=2)
