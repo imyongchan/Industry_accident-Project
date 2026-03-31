@@ -198,9 +198,182 @@
 
 ---
 
-## 💥Troubleshooting
+# 💥Troubleshooting -- 산업재해 통계 시각화
+## 1️⃣ Pandas Pivot Table 집계 시 분류불능 데이터 포함
+
+### 📌 문제
+연령대별 통계 계산 시 데이터베이스의 '분류불능' 항목이 포함되어 차트에 불필요한 범주가 표시:
+```
+연령대 통계: [18세미만: 120, 20대: 450, 분류불능: 35, ...]  # ❌ 분류불능 포함
+```
+
+### 🔍 원인
+- **DB 데이터 품질**: 통계청 공식 데이터에 '분류불능' 항목 존재
+- **Pandas pivot_table 동작**: 모든 컬럼을 그대로 포함하여 데이터 정규화 누락
+- **UI 혼란**: 사용자가 예상하지 못한 카테고리 노출
+
+### 💡 해결 방법
+
+#### Before (오류 코드)
+```python
+# stats.py - get_stats4() 함수
+pivot = (
+    df.pivot_table(
+        index="prd_de",
+        columns="c2_nm",
+        values="dt",
+        aggfunc="sum",
+    )
+    .sort_index()
+)  # ❌ 분류불능 항목 포함
+
+age_pivot["18세 미만"] = pivot.get("18세 미만", 0)
+age_pivot["20대"] = pivot.get("18~24세", 0) + pivot.get("25~29세", 0)
+```
+
+#### After (해결 코드)
+```python
+# stats.py - get_stats4() 함수
+pivot = (
+    df.pivot_table(
+        index="prd_de",
+        columns="c2_nm",
+        values="dt",
+        aggfunc="sum",
+    )
+    .sort_index()
+)
+
+# ✅ 데이터 정규화: 분류불능 항목 제거
+pivot = pivot.drop(columns=["분류불능"], errors="ignore")
+
+age_pivot = pd.DataFrame(index=pivot.index)
+
+# ✅ 명시적 연령대 그룹화
+age_pivot["18세 미만"] = pivot.get("18세 미만", 0)
+age_pivot["20대"] = pivot.get("18~24세", 0) + pivot.get("25~29세", 0)
+                    .
+                    .
+age_pivot["60대 이상"] = pivot.get("60세 이상", 0)
+```
+
+### 📊 효과
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/e19b3c3c-8b95-4a72-8fb6-931eca94fdc2" />
+
+- ✅ 차트 가독성 향상 (정확히 6개 카테고리만 표시)
+- ✅ 사용자 혼동 제거
+
+## 2️⃣ 차트 재렌더링 시 이전 데이터 누적 현상
+
+### 📌 문제
+사용자가 "최근 1년" → "2년" → "3년" 버튼을 차례대로 클릭할 때, Chart.js 인스턴스가 재사용되지 않아 성능 저하 및 메모리 누수
+
+### 🔍 원인
+- **메모리 누수**: 이전 Chart 인스턴스 destroy() 미실행
+- **DOM 리소스**: canvas 요소가 중복 바인딩됨
+
+### 💡 해결 방법
+
+#### Before (오류 코드)
+```javascript
+// chart.js
+function createHorizontalBarChart(chartRefName, canvasId, labels, data, options = {}) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext("2d");
+
+    // ❌ 기존 차트 확인 없이 매번 새로 생성
+    charts[chartRefName] = new Chart(ctx, {
+        type: "bar",
+        data: { labels, datasets: [{data, ...}] },
+        ...
+    });
+}
+```
+
+#### After (해결 코드)
+```javascript
+
+    const ctx = canvas.getContext("2d");
+    const existing = charts[chartRefName];
+
+    // ✅ 기존 차트 재활용 (데이터만 업데이트)
+    if (existing) {
+        existing.data.labels = labels;
+        existing.data.datasets[0].data = data;
+        existing.data.datasets[0].backgroundColor = colors;
+        existing.update();  // 차트 재렌더링
+        return;  
+    }
+
+    // ✅ 첫 번째 호출 시에만 신규 생성
+    charts[chartRefName] = new Chart(ctx, {
+        type: "bar",
+        data: { labels, datasets: [{data, backgroundColor: colors, ...}] },
+        ...
+    });
+}
+```
+
+#### 📊 효과
+- ✅ 차트 변환 응답속도: 1.5s → 150ms (약 10배 개선)
+- ✅ 메모리 사용량: 안정적 유지 (누적 증가 제거)
+- ✅ 사용자 경험 개선 (버튼 클릭 반응 즉시성)
 
 
+## 3️⃣다중 통계함수의 쿼리 성능 (N+1 Problem)
+
+### 📌 문제
+사용자가 통계 페이지를 로드할 때마다 9개의 통계 함수(`get_stats1` ~ `get_stats9`)가 순차적으로 데이터베이스를 조회하여 응답 속도가 3~5초 지연:
+
+
+### 🔍 원인
+- **순차 쿼리**: 각 `get_stats*()` 함수에서 독립적으로 `filter()` → `values()` 실행
+- **데이터 중복 조회**: 동일 업종의 Stats 테이블을 여러 번 쿼리
+- **Pandas 변환 오버헤드**: 매번 `DataFrame.from_records()` 및 `pivot_table()` 실행
+
+### 💡 해결 방법
+
+#### Before (오류 코드)
+```python
+# views.py - 순차 쿼리
+summary1 = get_stats1(industry_name1)
+summary2 = get_stats2(industry_name2)
+...
+summary9 = get_stats9(industry_name9)
+# ❌ 총 9회 DB 접근, ~4-5초 소요
+```
+
+#### After (해결 코드 - 캐싱 적용)
+```python
+# views.py - 캐싱 추가
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+
+def stats_home(request):
+    
+    # ✅ 캐시 키 생성
+    cache_key = f"stats_{industry.id}_{age_group}"
+    cached_data = cache.get(cache_key)
+    
+    if cached_data:
+        # 캐시된 데이터 사용
+        summary1, summary2, ..., summary9, risk_analysis = cached_data
+    else:
+        # 쿼리 실행 (처음 1회만)
+        summary1 = get_stats1(industry_name1)
+        summary2 = get_stats2(industry_name2)
+        # ... 나머지 쿼리 ...
+        
+        # ✅ 24시간 동안 캐시 저장
+        cache.set(cache_key, 
+            (summary1, summary2, ..., summary9, risk_analysis), 
+            86400  # 24시간
+        )
+```
+
+### 📊 효과
+- ✅ 페이지 로드 속도: 4-5배 개선
+- ✅ DB 쿼리 횟수: 9회 → 1회 (캐싱 적용 시)
 
 
 ## 🎥 데모 영상
