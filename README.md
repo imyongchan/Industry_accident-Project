@@ -1,29 +1,27 @@
-# 🏥 산재 데이터 분석 및 추천 정보제공 플랫폼
-### 근로자 안전을 위한 산업재해 통합 정보 플랫폼
+<p align="center">
+  <img width="720" src="https://github.com/user-attachments/assets/afeec5d8-44cf-43a1-8afa-59db78741844" />
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=flat-square&logo=python)
-![Django](https://img.shields.io/badge/Django-5.2-092e20?style=flat-square&logo=django)
-![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=flat-square&logo=sqlite)
-![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)
+<h1 align="center">🩸 산재콕 (SanJaeCok)</h1>
+<p align="center">산업재해 데이터 기반 맞춤형 위험도 분석 및 예방 서비스</p>
 
-> 산업재해 정보를 실시간으로 수집·분석하여 근로자에게 **맞춤형 안전정보**와 **지역별 산재지정병원**을 추천하는 플랫폼
 
----
+## 📌 Introduction
 
-## 📑 목차
+산업재해 관련 정보는 여러 기관에 분산되어 있어 접근성이 낮고,  
+산재 지정 의료기관 또한 제한적이어서 정보 탐색에 어려움이 있습니다.  
 
-- [프로젝트 개요](#프로젝트-개요)
-- [주요 기능](#주요-기능)
-- [기술 스택](#기술-스택)
-- [시스템 아키텍처](#시스템-아키텍처)
-- [설치 및 실행](#설치-및-실행)
-- [프로젝트 구조](#프로젝트-구조)
-- [주요 기술 상세](#주요-기술-상세)
-- [팀 정보](#팀-정보)
+이에 따라 본 프로젝트는 **산재 정보, 통계, 예방 자료를 통합 제공하고**,  
+사용자 맞춤형 위험도 분석을 통해 산업재해 예방을 지원하는 서비스를 목표로 개발되었습니다.
 
 ---
 
-## 🎯 프로젝트 개요
+## 📊 Project Overview
+
+- **프로젝트명**: 산재콕 (SanJaeCok)  
+- **개발기간**: 2024.11.18 ~ 2024.12.24  
+- **팀명**: 하랑 유니버스
+- **개발 형태**: 4인 팀 프로젝트
 
 ### 목표
 - 🔍 **산업재해 정보 통합화**: 공공데이터 기반 산재통계 및 뉴스 자동 수집
@@ -37,7 +35,55 @@
 - ❌ 안전교육 자료에 대한 접근성 낮음
 - ❌ 실시간 산재 관련 뉴스 수집의 어려움
 
+
+## 🛠 Tech Stack
+
+### Frontend
+- ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+- ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
+- ![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white)
+- ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
+
 ---
+
+### Backend
+- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+- ![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
+- ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+
+---
+
+### Database
+- ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+
+---
+
+### Infra & Tools
+- ![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
+- ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
+- ![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white)
+- ![Scheduler](https://img.shields.io/badge/Scheduler-Cron-blue?style=flat-square)
+
+---
+
+## 📊 Data Sources
+
+### Public API
+- ![KOSIS](https://img.shields.io/badge/KOSIS-산업재해현황-blue?style=flat-square)
+- ![SafetyMap](https://img.shields.io/badge/생활안전지도-API-green?style=flat-square)
+
+---
+
+### Crawling Data
+- ![근로복지공단](https://img.shields.io/badge/근로복지공단-산재지정의료기관-orange?style=flat-square)
+- ![산재뉴스](https://img.shields.io/badge/산재뉴스-크롤링-red?style=flat-square)
+- ![산업안전포털](https://img.shields.io/badge/산업안전포털-데이터-purple?style=flat-square)
+> 산업재해 정보를 실시간으로 수집·분석하여 근로자에게 **맞춤형 안전정보**와 **지역별 산재지정병원**을 추천하는 플랫폼
+
+---
+
 
 ## ⚡ 주요 기능
 
@@ -93,83 +139,6 @@
 
 ---
 
-## 🛠️ 기술 스택
-
-### Backend
-| 분류 | 기술 |
-|------|------|
-| **Framework** | Django 5.2 |
-| **Language** | Python 3.10+ |
-| **Database** | SQLite (개발용) |
-| **Task Scheduler** | APScheduler |
-| **Authentication** | Django Auth + OAuth2 |
-
-### Frontend
-| 분류 | 기술 |
-|------|------|
-| **Template** | Django Template |
-| **Map API** | 네이버 지도 API |
-| **Styling** | CSS3 |
-| **Interactive** | JavaScript / AJAX |
-
-### External APIs
-| 서비스 | 목적 | 제공자 |
-|--------|------|--------|
-| **지오코딩** | 주소→좌표 변환 | 카카오 |
-| **지도** | 병원/산재지점 표시 | 네이버 |
-| **산재통계** | 공식 산재 통계 | 통계청 (KOSIS) |
-| **병원 데이터** | 산재지정병원 정보 | 보건복지부 (SAFEMAP) |
-| **안전자료** | 안전교육 자료 | 산업안전보건공단 |
-| **소셜로그인** | 회원 인증 | 카카오, 네이버, 구글 |
-
----
-
-## 🏗️ 시스템 아키텍처
-
-```
-┌─────────────────────────────────────────────────────┐
-│                   Frontend (Template)                │
-│          병원검색 | 통계 | 뉴스 | 마이페이지         │
-└────────────────────┬────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────┐
-│              Django URL Router                        │
-│  /hospital | /member | /stats | /news | /safe       │
-└────────────────────┬────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────┐
-│            Django App Layer (Views/Services)         │
-│                                                       │
-│  ├─ hospital     (병원 검색, 지오코딩)               │
-│  ├─ member       (회원, 소셜로그인)                 │
-│  ├─ news         (뉴스 관리)                         │
-│  ├─ safe         (안전자료)                          │
-│  ├─ stats        (통계 분석)                         │
-│  ├─ manager      (관리자 대시보드)                   │
-│  └─ reviews      (리뷰 시스템)                       │
-└────────────────────┬────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────┐
-│             Data & Business Logic                    │
-│                                                       │
-│  ├─ Models        (Member, Hospital, News, ...)     │
-│  ├─ Services      (소셜로그인, 통계계산, ...)        │
-│  ├─ Crawlers      (뉴스, 병원, 안전자료)            │
-│  └─ Signals       (신호 처리)                        │
-└────────────────────┬────────────────────────────────┘
-                     │
-┌────────────────────▼────────────────────────────────┐
-│             SQLite Database                          │
-│  t_member | t_hospital | t_news | t_safe | ...      │
-└─────────────────────────────────────────────────────┘
-                     │
-         ┌───────────┼───────────┐
-         │           │           │
-    ┌────▼────┐  ┌──▼────┐  ┌──▼─────┐
-    │ 카카오   │  │네이버 │  │통계청   │
-    │지오코딩  │  │지도   │  │KOSIS   │
-    └─────────┘  └───────┘  └────────┘
-```
 
 ---
 
@@ -228,161 +197,15 @@ http://localhost:8000
 
 ---
 
-## 📁 프로젝트 구조
-
-```
-Sanjae_Project/
-├── README.md                      # 프로젝트 설명서
-├── manage.py                      # Django 관리 스크립트
-├── db.sqlite3                     # 데이터베이스
-├── data.json                      # 초기 데이터
-│
-├── sanjekok/                      # 메인 프로젝트 폴더
-│   ├── __init__.py
-│   ├── settings.py               # 프로젝트 설정
-│   ├── urls.py                   # 메인 URL 라우터
-│   ├── wsgi.py                   # WSGI 설정
-│   ├── asgi.py                   # ASGI 설정
-│   └── scheduler.py              # APScheduler 설정
-│
-├── main/                          # 메인 페이지 앱
-│   ├── views.py                  # 통계API, 홈페이지
-│   ├── models.py
-│   ├── urls.py
-│   └── templates/
-│       ├── base.html             # 기본 템플릿
-│       ├── main.html             # 메인 페이지
-│       ├── intro_service.html    # 서비스 소개
-│       └── intro_tech.html       # 기술 소개
-│
-├── hospital/                      # 병원 검색 앱
-│   ├── views.py                  # 병원 검색, 상세정보
-│   ├── models.py                 # Hospital 모델
-│   ├── urls.py
-│   ├── crawler/                  # 병원 정보 크롤러
-│   │   ├── fetch.py             # SAFEMAP API 호출
-│   │   ├── parse.py             # 데이터 파싱
-│   │   ├── save.py              # DB 저장
-│   │   └── run.py               # 크롤러 메인
-│   └── templates/
-│       └── hospital/
-│
-├── member/                        # 회원 관리 앱
-│   ├── views.py                  # 회원가입, 로그인, 마이페이지
-│   ├── models.py                 # Member, Individual 모델
-│   ├── services.py               # 소셜로그인 처리
-│   ├── signals.py                # 회원가입 신호
-│   ├── decorators.py             # 로그인 체크
-│   ├── forms.py                  # 회원가입 폼
-│   ├── urls.py
-│   ├── migrations/
-│   └── templates/
-│       └── member/
-│
-├── news/                          # 뉴스 앱
-│   ├── views.py                  # 뉴스 조회/검색
-│   ├── models.py                 # News 모델
-│   ├── urls.py
-│   ├── crawler/                  # 뉴스 자동 크롤러
-│   │   ├── fetch.py             # sanjaenews.co.kr 크롤링
-│   │   ├── parse.py
-│   │   └── save.py
-│   └── migrations/
-│
-├── safe/                          # 안전자료 앱 (자료실)
-│   ├── views.py                  # 자료 조회/검색
-│   ├── models.py                 # Safe, Tag, SafeTag, History
-│   ├── urls.py
-│   ├── crawler/                  # KOSHA 자료 크롤러
-│   │   ├── fetch.py             # KOSHA API 크롤링
-│   │   ├── parse.py
-│   │   └── save.py
-│   └── migrations/
-│
-├── stats/                         # 통계 분석 앱
-│   ├── views.py                  # 개인 통계 대시보드
-│   ├── models.py                 # Stats1~9 모델
-│   ├── stats.py                  # 통계 계산 로직
-│   ├── urls.py
-│   └── migrations/
-│
-├── manager/                       # 관리자 대시보드 앱
-│   ├── views.py                  # 관리자 대시보드, 관리
-│   ├── models.py
-│   ├── urls.py
-│   └── templates/
-│       ├── manager_base.html
-│       ├── manager_dash.html    # 대시보드
-│       ├── manager_member.html  # 회원 관리
-│       ├── manager_detail.html
-│       ├── manager_review.html  # 리뷰 관리
-│       ├── manager_stats.html   # 통계
-│       └── manager_login.html   # 관리자 로그인
-│
-├── reviews/                       # 리뷰 시스템 앱
-│   ├── views.py                  # 리뷰 생성/조회
-│   ├── models.py                 # Review 모델
-│   └── urls.py
-│
-├── search/                        # 위치 기반 검색 앱
-│   ├── views.py                  # 주소기반 검색 API
-│   ├── models.py
-│   └── urls.py
-│
-├── static/                        # 정적 파일
-│   ├── CSS/
-│   ├── img/
-│   └── js/
-│
-└── templates/                     # 공유 템플릿
-    └── common/
-```
-
----
-
 ## 📌 주요 기술 상세
 
-### 🗺️ 지도 기반 검색 (Haversine 공식)
-```python
-# 두 지점 간 거리 계산
-from math import radians, sin, cos, sqrt, atan2
-
-def haversine_distance(lat1, lon1, lat2, lon2):
-    R = 6371  # 지구 반경 (km)
-    
-    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
-    dlat = lat2 - lat1
-    dlon = lon2 - lon1
-    
-    a = sin(dlat/2)**2 + cos(lat1)*cos(lat2)*sin(dlon/2)**2
-    c = 2*atan2(sqrt(a), sqrt(1-a))
-    
-    return R * c  # km 단위
-```
-
-### 🔐 소셜 로그인 (OAuth2)
-```
-사용자 → 리다이렉션 → OAuth 제공자 → 토큰 발급 → 회원 생성/업데이트 → 로그인
-```
-
-### 🤖 자동 크롤링 (APScheduler)
-```python
-from apscheduler.schedulers.background import BackgroundScheduler
-
-scheduler = BackgroundScheduler()
-scheduler.add_job(fetch_news, 'cron', hour='9,21')  # 매일 09:00, 21:00
-scheduler.start()
-```
 
 ### 📊 통계 분석
 - **통계청 KOSIS API** 연동으로 공식 데이터 기반 분석
 - 개인 업종별 산재통계 비교
 - 연령대별/성별 데이터 시각화
 
-### 🔍 지오코딩
-- **카카오 Geolocation API** 활용
-- 주소 → 위도/경도 변환
-- 역지오코딩으로 좌표 → 주소 변환
+
 
 ---
 
@@ -413,12 +236,6 @@ scheduler.start()
 
 ---
 
-## 👥 팀 정보
-
-**프로젝트명**: 산재 데이터 분석 및 추천 정보제공 플랫폼  
-**개발팀**: 하랑 유니버스  
-**개발 기간**: 2024 ~ 2025  
-**버전**: 1.0.0
 
 ---
 
@@ -428,10 +245,3 @@ scheduler.start()
 
 ---
 
-<div align="center">
-  
-  **Made with ❤️ by 산재 데이터팀**
-  
-  [⬆ Back to top](#-산재-데이터-분석-및-추천-정보제공-플랫폼)
-  
-</div>
