@@ -34,114 +34,174 @@
 - ❌ 개인 업종에 맞는 산재통계 정보 미흡
 - ❌ 안전교육 자료에 대한 접근성 낮음
 - ❌ 실시간 산재 관련 뉴스 수집의 어려움
+---
+## 👥 팀 구성 및 역할 
+- **김용찬(팀장)** : 회원맞춤 산업재해 통계 시각화
+- **최도윤** : 멤버기능, 소셜로그인, 서버배포
+- **박소윤** : 산업재해 뉴스, 안전자료실  
+- **이하랑** : 메인페이지, 관리자페이지
+- **문승신** : 산업재해 위치, 산재지정병원 검색 
 
 
 ## 🛠 Tech Stack
 
-### Frontend
-- ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-- ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-- ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
-- ![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white)
-- ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
+<div align="center">
 
----
+### 💻 Frontend
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"/>
+<img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white"/>
 
-### Backend
-- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-- ![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
-- ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
 
----
+### 🧠 Backend
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"/>
+<img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
 
-### Database
-- ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 
----
+### 🗄 Database
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
 
-### Infra & Tools
-- ![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
-- ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
-- ![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white)
-- ![Scheduler](https://img.shields.io/badge/Scheduler-Cron-blue?style=flat-square)
 
----
+### ☁️ Infra & Tools
+<img src="https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/>
+<img src="https://img.shields.io/badge/Cron-Scheduler-blue?style=for-the-badge"/>
 
-## 📊 Data Sources
+</div>
 
-### Public API
-- ![KOSIS](https://img.shields.io/badge/KOSIS-산업재해현황-blue?style=flat-square)
-- ![SafetyMap](https://img.shields.io/badge/생활안전지도-API-green?style=flat-square)
+## 🔍 Data Sources
 
----
+<div align="center">
 
-### Crawling Data
-- ![근로복지공단](https://img.shields.io/badge/근로복지공단-산재지정의료기관-orange?style=flat-square)
-- ![산재뉴스](https://img.shields.io/badge/산재뉴스-크롤링-red?style=flat-square)
-- ![산업안전포털](https://img.shields.io/badge/산업안전포털-데이터-purple?style=flat-square)
-> 산업재해 정보를 실시간으로 수집·분석하여 근로자에게 **맞춤형 안전정보**와 **지역별 산재지정병원**을 추천하는 플랫폼
+### 📡 Open API
+<img src="https://img.shields.io/badge/KOSIS-산업재해현황-005BAC?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/생활안전지도-API-2ECC71?style=for-the-badge"/>
 
----
 
+### 🕷 Crawling Data
+<img src="https://img.shields.io/badge/근로복지공단-산재지정의료기관-FF7F50?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/산재뉴스-크롤링-E74C3C?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/산업안전포털-안전자료-8E44AD?style=for-the-badge"/>
+
+</div>
 
 ## ⚡ 주요 기능
 
-### 1️⃣ **병원 검색 시스템** 🏥
-```
-• 산재지정병원 검색 (주소, 병원명 기반)
-• 지도 기반 근처 병원 검색 (Haversine 거리 계산)
-• 병원 상세정보 조회 (전문분야, 연락처)
-• 실시간 지오코딩 (카카오 API)
-• 병원별 리뷰/평점 조회
-```
+---
 
-### 2️⃣ **회원 관리 시스템** 👤
-```
-• 로컬 회원가입 (2단계 인증)
-• 소셜 로그인 (카카오, 네이버, 구글 OAuth2)
-• 개인 산재 기록 관리
-• 마이페이지 (프로필 수정, 비밀번호 변경)
-• 개인별 산재 위치 저장 (GPS 좌표)
-```
+### 1️⃣ 🏥 산재& 병원 검색 시스템
 
-### 3️⃣ **통계 분석 대시보드** 📊
-```
-• 개인 업종별 산재통계 (통계청 공식 데이터)
-• 연령대별, 성별 산재 분석
-• 7일 신규가입 추이 차트
-• 위험도 평가 및 안전정보 제공
-```
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/12802a5f-6bf9-4cd8-96e8-225b0d94918e" width="400"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/4f9047ab-d6b4-4b2f-b9f6-76b6b956a5ce" width="400"/>
+    </td>
+  </tr>
+</table>
 
-### 4️⃣ **자동 크롤링 시스템** 🤖
-```
-• 산재지정병원 정보 수집 (SAFEMAP API)
-• 뉴스 자동 수집 (sanjaenews.co.kr) - 매일 09:00, 21:00
-• 안전교육 자료 수집 (KOSHA) - 매일 03:30
-• 관리자 수동 트리거 기능
-```
 
-### 5️⃣ **안전자료실** 📚
-```
-• KOSHA 안전교육 자료 제공
-• 자료 유형별 분류 (PPT, 동영상, 책자, OPS)
-• 다국어 지원 (한, 영, 중 등)
-• 조회수 추적 및 최근 방문 기록
-```
+- 산재지정병원 검색 (주소, 병원명 기반)  
+- 지도 기반 근처 병원 검색 (Haversine 거리 계산)  
+- 병원 상세정보 조회 (전문분야, 연락처)  
+- 카카오 API 기반 실시간 지오코딩  
+- 병원 리뷰 및 평점 시스템 제공  
 
-### 6️⃣ **관리자 대시보드** ⚙️
-```
-• 전체 회원, 산재, 리뷰 통계
-• 신규 가입자 추이 모니터링
-• 크롤러 수동 실행 관리
-• 회원/산재/리뷰/통계 페이지 관리
-```
+---
+
+### 2️⃣ 👤 회원 관리 시스템
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/4a383e31-0403-44e9-b817-590f16c6ddb3" width="400"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7b7c6005-89ce-475c-85c0-c47caefabd08" width="400"/>
+    </td>
+  </tr>
+</table>
+
+- 로컬 회원가입 및 2단계 인증  
+- 카카오 / 네이버 / 구글 OAuth2 소셜 로그인  
+- 개인 산재 기록 관리 기능  
+- 마이페이지 (프로필 수정, 비밀번호 변경)  
+- 사용자 산재 위치 GPS 저장  
+
+---
+
+### 3️⃣ 📊 통계 분석 대시보드
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d06d95da-12b1-4ed8-828f-702694ec5b6b" width="400"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/65a8f407-26bf-45e5-a87a-612bca161ed2" width="400"/>
+    </td>
+  </tr>
+</table>
+
+- 개인 업종별 산업재해 통계 제공  
+- 연령대 및 성별 기반 분석  
+- Chart.js 기반 시각화  
+- 위험도 평가 및 안전정보 제공  
+
+---
+
+### 5️⃣ 📚 뉴스 & 안전자료실
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/a1265a75-b678-48bb-bea8-0c892b834d56" width="400"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/ed8daf2e-1613-4392-bd47-d67e5280d696" width="400"/>
+    </td>
+  </tr>
+</table>
+
+
+- 산업안전 교육자료 제공  
+- 자료 유형별 분류 (영상, PPT, 문서 등)  
+- 다국어 콘텐츠 지원  
+- 조회수 및 최근 기록 관리  
+
+---
+
+### 6️⃣ ⚙️ 관리자 대시보드
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/aad4a48b-3a5a-49bd-b5e0-64e1bd7cc8be" width="400"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/2868de8b-9a92-4690-95bd-851254c814b8"  width="400"/>
+    </td>
+  </tr>
+</table>
+
+- 전체 회원 및 데이터 통계   
+- 신규 가입자 추이 모니터링  
+- 사용자 및 산재정보 데이터 관리 기능
+- 병원 리뷰 데이터 관리 
+
+---
 
 ## 🎥 데모 영상
 
 - 프로젝트 발표 영상 : [발표 영상](https://www.youtube.com/watch?v=e4Z1Nv8bzfg&list=PLedGoSru7948o9_CdQBQZmIc-K3tR8eO9&index=2)
 - 프로젝트 화면 영상 : [화면 영상](https://www.youtube.com/watch?v=pW8r0M16QmE&list=PLedGoSru7948o9_CdQBQZmIc-K3tR8eO9&index=5)
-- 발표 자료: [발표 ppt]
 ---
 
 
