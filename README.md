@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="720" src="https://github.com/user-attachments/assets/afeec5d8-44cf-43a1-8afa-59db78741844" />
+  <img width="800" height="300" alt="image" src="https://github.com/user-attachments/assets/648d61ed-feaa-430a-8738-55e91fca237b" />
 </p>
 
-<h1 align="center">🩸 산재콕 (SanJaeCok)</h1>
+<h1 align="center">⛑ 산재콕 (SanJaeCok)</h1>
 <p align="center">산업재해 데이터 기반 맞춤형 위험도 분석 및 예방 서비스</p>
 
 
@@ -25,9 +25,9 @@
 
 ### 목표
 - 🔍 **산업재해 정보 통합화**: 공공데이터 기반 산재통계 및 뉴스 자동 수집
-- 🗺️ **지역기반 서비스**: GPS를 활용한 근처 산재지정병원 검색
+- 🗺️ **위치기반 정보 검색**: 사용자 집,근무지,사고지역 기준 산재지정병원 검색
 - 📊 **맞춤형 분석**: 사용자의 업종, 연령대별 산재 위험도 분석
-- 🛡️ **안전교육 제공**: KOSHA 안전자료 자동 수집 및 큐레이션
+- 🛡️ **안전교육 제공**: 안전자료 자동 수집 및 큐레이션
 
 ### 해결하는 문제
 - ❌ 산재 발생 시 대처할 수 있는 병원 정보 부족
@@ -137,111 +137,12 @@
 • 회원/산재/리뷰/통계 페이지 관리
 ```
 
+## 🎥 데모 영상
+
+- 프로젝트 발표 영상 : [발표 영상](https://www.youtube.com/watch?v=e4Z1Nv8bzfg&list=PLedGoSru7948o9_CdQBQZmIc-K3tR8eO9&index=2)
+- 프로젝트 화면 영상 : [화면 영상](https://www.youtube.com/watch?v=pW8r0M16QmE&list=PLedGoSru7948o9_CdQBQZmIc-K3tR8eO9&index=5)
+- 발표 자료: [발표 ppt]
 ---
 
 
----
-
-## 🚀 설치 및 실행
-
-### 사전 요구사항
-```bash
-• Python 3.10 이상
-• pip 또는 conda
-• Git
-```
-
-### 1단계: 저장소 클론
-```bash
-git clone https://github.com/imyongchan/Industry_accident-Project.git
-cd Sanjae_Project
-```
-
-### 2단계: 가상환경 생성 및 활성화
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3단계: 의존성 설치
-```bash
-pip install -r requirements.txt
-```
-
-### 4단계: 데이터베이스 마이그레이션
-```bash
-cd sanjekok
-python manage.py migrate
-```
-
-### 5단계: 관리자 계정 생성
-```bash
-python manage.py createsuperuser
-```
-
-### 6단계: 서버 실행
-```bash
-python manage.py runserver
-```
-
-### 7단계: 브라우저에서 접속
-```
-http://localhost:8000
-관리자: http://localhost:8000/admin
-```
-
----
-
-## 📌 주요 기술 상세
-
-
-### 📊 통계 분석
-- **통계청 KOSIS API** 연동으로 공식 데이터 기반 분석
-- 개인 업종별 산재통계 비교
-- 연령대별/성별 데이터 시각화
-
-
-
----
-
-## 💡 프로젝트 하이라이트
-
-### ✨ 혁신적 기능
-- 🤖 **완전 자동화된 데이터 수집**: 매일 정해진 시간에 최신 정보 자동 업데이트
-- 🗺️ **GPS 기반 스마트 검색**: 사용자 위치에서 가장 가까운 병원 즉시 제시
-- 👥 **다중 인증 시스템**: 로컬 + 3가지 소셜 로그인 지원
-- 📈 **맞춤형 위험도 분석**: AI 기반 사용자 업종별 산재통계 분석
-
-### 🏆 개발 역량 시연
-- **풀스택 개발**: Backend(Django) + Frontend(Template) 통합 구현
-- **외부 API 연동**: 6개 이상의 외부 API 안정적 통합
-- **자동화 시스템**: 스케줄러를 통한 크롤링 자동화
-- **데이터베이스 설계**: 정규화된 관계형 DB 모델링 (19개 이상의 테이블)
-- **보안 구현**: 비밀번호 해싱, 세션 관리, OAuth2 인증
-
----
-
-## 🔗 유용한 링크
-
-- 📖 [Django 공식 문서](https://docs.djangoproject.com/)
-- 🗺️ [네이버 지도 API 문서](https://developers.naver.com/docs/map/)
-- 📊 [통계청 KOSIS API](https://kosis.kr/)
-- 🏥 [보건복지부 SAFEMAP](https://safemap.go.kr/)
-- 🛡️ [산업안전보건공단](https://www.kosha.or.kr/)
-
----
-
-
----
-
-## 📄 라이센스
-
-이 프로젝트는 MIT 라이센스 하에 배포됩니다.
-
----
 
