@@ -372,6 +372,51 @@ def stats_home(request):
 - ✅ DB 쿼리 횟수: 9회 → 1회 (캐싱 적용 시)
 
 
+## 4️⃣ 종합 위험도 평가 가중치 설정 
+
+### 📌 문제
+공식적인 기준이나 정답 ❌
+
+### 🔍 원인
+
+
+### 💡 해결 방법
+
+#### (데이터 분포 판단 후 로직 점수 배점 설정  )
+
+
+<table>
+  <tr>
+    <td align="center">
+      <img  src="https://github.com/user-attachments/assets/3bf55d8f-ca08-4148-8bef-16baf43956f1" width="500"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7493005b-ac70-4184-94db-a4ad6f9fbef0"  width="400"/>
+    </td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/0f317f74-bcf5-42fa-8e56-ad7cac8759ea" width="500"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/20b3daa3-e3ae-4400-ad6c-33447ec24c02"  width="400"/>
+    </td>
+  </tr>
+</table>
+
+
+### 📊 효과
+- ✅ 페이지 로드 속도: 4-5배 개선
+- ✅ DB 쿼리 횟수: 9회 → 1회 (캐싱 적용 시)
+
+
+
+
+
 ## 🎥 데모 영상
 
 - 프로젝트 발표 영상 : [발표 영상](https://www.youtube.com/watch?v=e4Z1Nv8bzfg&list=PLedGoSru7948o9_CdQBQZmIc-K3tR8eO9&index=2)
